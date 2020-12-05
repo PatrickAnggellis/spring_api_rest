@@ -15,7 +15,7 @@ public class StudentController {
     public StudentController(){
         students.addAll(List.of(
             new Student("Patrick"),
-            new Student("José"),
+            new Student("Ivandro"),
             new Student("Liz")
         ));
     }
