@@ -7,30 +7,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/studentes")
 public class StudentController {
 
     private List<Student> students = new ArrayList<>();
 
-    @GetMapping("/students")
-    public Iterable<Student> getStudent(){
+    public StudentController(){
+        students.addAll(List.of(
+            new Student("Patrick"),
+            new Student("José"),
+            new Student("Liz")
+        ));
+    }
+
+   @GetMapping
+    public Iterable<Student> getStudents(){
         return students;
     }
 
-    @GetMapping("/students/{id}")
-    public Optional<Student> getStudentById(@PathVariable Integer id){
-
-        int studentIndex = -1;
-        for (Student st: students){
-            if (st.getId().equals(id)){
-                return Optional.of(st);
-            }
-        }
-        return Optional.empty();
-    }
-
-    @PostMapping("/students")
-    Student postStudent(@RequestBody Student student){
-        students.add(student);
-        return student;
-    }
 }

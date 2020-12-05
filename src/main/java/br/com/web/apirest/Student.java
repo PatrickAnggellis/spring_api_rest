@@ -1,13 +1,26 @@
 package br.com.web.apirest;
 
+import java.util.UUID;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Student {
 
-    private Integer id;
+    private final String id;
     private String name;
-    private int age;
+
+    public Student(String id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    public Student(String name){
+        this(UUID.randomUUID().toString(), name);
+    }
+   
 }
