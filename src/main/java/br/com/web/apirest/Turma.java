@@ -9,6 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+
+/*Classe geradora de ID*/
 public class Turma {
 
     private String id;

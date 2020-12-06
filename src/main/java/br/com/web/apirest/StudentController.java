@@ -1,7 +1,6 @@
 package br.com.web.apirest;
 
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,7 @@ public class StudentController {
         students.addAll(List.of(
             new Student("Patrick"),
             new Student("Ivandro"),
-            new Student("Liz")
+            new Student("Luiz")
         ));
     }
 
