@@ -8,7 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 
 /*Classe geradora de ID*/
 public class Turma {
@@ -27,5 +26,13 @@ public class Turma {
 
 	public Object getId() {
 		return id;
-	}
+    }
+    
+    public String getTurma(){
+        return turma;
+    }
+
+    public void setTurma(String turma){
+        this.name = turma;
+    }
 }

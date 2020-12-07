@@ -7,7 +7,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 
 /* Classe geradora de ID*/
 
@@ -27,6 +26,14 @@ public class Student {
 
 	public Object getId() {
 		return id;
-	}
+    }
+    
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
    
 }
