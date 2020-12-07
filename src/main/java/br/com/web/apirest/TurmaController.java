@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@RequestMapping("/turmas")
 @RestController
+@RequestMapping("/turmas")
 public class TurmaController {
 
     private List<Turma> turmas = new ArrayList<>();
@@ -34,7 +35,7 @@ public class TurmaController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Turma> getTurmaById(PathVariable String id){
+    public Optional<Turma> getTurmaById(@PathVariable String id){
         for(Turma t: turmas){
             if(t.getId().equals(id)){
                 return Optional.of(t);
@@ -61,5 +62,10 @@ public class TurmaController {
             }
         }
         return (turmaIndex == -1) ? postTurma(turma): turma;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTurma (@PathVariable String id) {
+        turmas.removeIf(t -> t.getId().equals(id));
     }
 }

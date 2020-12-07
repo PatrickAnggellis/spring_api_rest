@@ -24,5 +24,9 @@ public class Student {
     public Student(String name){
         this(UUID.randomUUID().toString(), name);
     }
+
+	public Object getId() {
+		return id;
+	}
    
 }
