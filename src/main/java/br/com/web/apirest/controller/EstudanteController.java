@@ -1,7 +1,5 @@
 package br.com.web.apirest.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,54 +15,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.web.apirest.model.Student;
-import br.com.web.apirest.repository.StudentRepository;
-
-
+import br.com.web.apirest.model.Estudante;
+import br.com.web.apirest.repository.EstudanteRepository;
 
 @RestController
-@RequestMapping(path = "/students")
-public class StudentController {
-
-    //private List<Student> students = new ArrayList<>();
-
+@RequestMapping(path = "/estudantes")
+public class EstudanteController {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private EstudanteRepository estudanteRepository;
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> postStudent(@RequestBody Student student){
+    public ResponseEntity<?> postEstudante(@RequestBody Estudante estudante){
         try {
-            return ResponseEntity.ok(studentRepository.save(student));  
+            return ResponseEntity.ok(estudanteRepository.save(estudante));  
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-       
+        } 
     }    
 
     @GetMapping
-    public Iterable<Student> getStudents(){
-        return studentRepository.findAll();     
+    public Iterable<Estudante> getEstudantes(){
+        return estudanteRepository.findAll();     
     }
-    
-    //Verificar depois como fica esse por conta do Option
     
     @GetMapping(value="/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) {
-        Optional<Student> student;
+        Optional<Estudante> estudante;
         try {
-            student = studentRepository.findById(id);
-            return new ResponseEntity<Optional<Student>>(student, HttpStatus.OK);
+            estudante = estudanteRepository.findById(id);
+            return new ResponseEntity<Optional<Estudante>>(estudante, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Optional<Student>>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Optional<Estudante>>(HttpStatus.NOT_FOUND);
         }
     }
        
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable Long id) {
+    public ResponseEntity<?> deleteEstudante(@PathVariable Long id) {
         try {
-            studentRepository.delete(studentRepository.findById(id).get());
+            estudanteRepository.delete(estudanteRepository.findById(id).get());
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -72,9 +62,9 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> putStudent(@PathVariable String id, @RequestBody Student student){
+    public ResponseEntity<?> putEstudante(@PathVariable String id, @RequestBody Estudante estudante){
         try {
-            return ResponseEntity.ok(studentRepository.save(student));              
+            return ResponseEntity.ok(estudanteRepository.save(estudante));              
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

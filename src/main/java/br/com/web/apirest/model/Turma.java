@@ -26,10 +26,34 @@ public class Turma {
     @Id
     private Long id;
 
-    @Column(name = "nome")
-    private String nameTurma;
+    @Column(name = "disciplina")
+    private String disciplina;
 
-    public Turma(String nameTurma){
-        this.nameTurma = nameTurma;
+    public Turma(String disciplina){
+        this.disciplina = disciplina;
+    }
+
+    public Turma(){
+        
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public String getDisciplina(){
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina){
+        this.disciplina = disciplina;
+    }
+   
+    public String toString(){
+        return this.disciplina;
     }
 }

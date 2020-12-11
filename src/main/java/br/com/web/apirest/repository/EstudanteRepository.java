@@ -6,12 +6,12 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.web.apirest.model.Student;
+import br.com.web.apirest.model.Estudante;
  
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface EstudanteRepository extends JpaRepository<Estudante, Long> {
 
     // Método para encontrar uma pessoa por seu nome
-   Optional<List<Student>> findByName(String name);
+   Optional<List<Estudante>> findByName(String name);
     
 }

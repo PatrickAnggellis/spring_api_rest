@@ -1,5 +1,7 @@
 package br.com.web.apirest.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,20 +25,7 @@ public class TurmaController {
     @Autowired
     private TurmaRepository turmarepository;
 
-    @GetMapping
-    public Iterable<Turma> getTurmas(){
-        return turmarepository.findAll();
-    }
-
-    @GetMapping("/{id}")
-    @ResponseBody
-    public ResponseEntity<Turma> getTurmaById(@PathVariable String id){
-       Turma turma = turmarepository.findById(Long.parseLong(id)).get();
-       return ResponseEntity.ok(turma);
-    }
-
-    @PostMapping("/turmas")
-    @ResponseBody
+    @PostMapping
     public ResponseEntity<?> postTurma(@RequestBody Turma turma){
         try {
             return ResponseEntity.ok(turmarepository.save(turma));
@@ -45,18 +34,39 @@ public class TurmaController {
         }
     }
 
+    @GetMapping
+    public Iterable<Turma> getTurmas(){
+        return turmarepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<?> getTurmaById(@PathVariable Long id) {
+       Optional<Turma> turma;
+       try {
+           turma = turmarepository.findById(id);
+           return new ResponseEntity<Optional<Turma>>(turma, HttpStatus.OK);
+       } catch (Exception e) {
+            return new ResponseEntity<Optional<Turma>>(HttpStatus.NOT_FOUND);
+       }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTurma (@PathVariable Long id) {
+        try {
+            turmarepository.delete(turmarepository.findById(id).get());
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }    
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> putTurma(@PathVariable Long id, @RequestBody Turma turma){
+    public ResponseEntity<?> putTurma(@PathVariable String id, @RequestBody Turma turma){
         try {
             return ResponseEntity.ok(turmarepository.save(turma));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }  
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTurma (@PathVariable Long id) {
-        turmarepository.delete(turmarepository.findById(id).get());
-        return ResponseEntity.noContent().build();
-    }
+    }  
 }
