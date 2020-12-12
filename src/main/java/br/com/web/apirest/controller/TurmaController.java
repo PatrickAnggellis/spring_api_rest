@@ -17,16 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.web.apirest.model.Turma;
 import br.com.web.apirest.repository.TurmaRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/turmas")
+@Api(value = "Turma")
 public class TurmaController {
 
     @Autowired
     private TurmaRepository turmarepository;
 
     @PostMapping
-    public ResponseEntity<?> postTurma(@RequestBody Turma turma){
+    @ApiOperation(value = "Cadastra uma nova turma")
+    public ResponseEntity<Turma> postTurma(@RequestBody Turma turma){
         try {
             return ResponseEntity.ok(turmarepository.save(turma));
         } catch (Exception e) {
@@ -35,12 +39,14 @@ public class TurmaController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Recupera todas as turmas cadastradas")
     public Iterable<Turma> getTurmas(){
         return turmarepository.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseBody
+    @ApiOperation(value = "Recupera uma turma por seu id")
     public ResponseEntity<?> getTurmaById(@PathVariable Long id) {
        Optional<Turma> turma;
        try {
@@ -52,7 +58,8 @@ public class TurmaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTurma (@PathVariable Long id) {
+    @ApiOperation(value = "Deleta uma turma com base em seu id")
+    public ResponseEntity<Turma> deleteTurma (@PathVariable Long id) {
         try {
             turmarepository.delete(turmarepository.findById(id).get());
             return ResponseEntity.noContent().build();
@@ -62,7 +69,8 @@ public class TurmaController {
     }    
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> putTurma(@PathVariable String id, @RequestBody Turma turma){
+    @ApiOperation(value = "Edita uma turma")
+    public ResponseEntity<Turma> putTurma(@PathVariable String id, @RequestBody Turma turma){
         try {
             return ResponseEntity.ok(turmarepository.save(turma));
         } catch (Exception e) {

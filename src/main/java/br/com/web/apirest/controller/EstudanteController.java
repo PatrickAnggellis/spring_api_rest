@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.web.apirest.model.Estudante;
 import br.com.web.apirest.repository.EstudanteRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(path = "/estudantes")
+@Api(value = "Estudante")
 public class EstudanteController {
 
     @Autowired
@@ -27,7 +30,8 @@ public class EstudanteController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> postEstudante(@RequestBody Estudante estudante){
+    @ApiOperation(value = "Cadastra um novo estudante.")
+    public ResponseEntity<Estudante> postEstudante(@RequestBody Estudante estudante){
         try {
             return ResponseEntity.ok(estudanteRepository.save(estudante));  
         } catch (Exception e) {
@@ -36,11 +40,13 @@ public class EstudanteController {
     }    
 
     @GetMapping
+    @ApiOperation(value = "Recupera todos os estudantes cadastrados.")
     public Iterable<Estudante> getEstudantes(){
         return estudanteRepository.findAll();     
     }
     
     @GetMapping(value="/{id}")
+    @ApiOperation(value = "Busca um estudante no banco de dados por seu id.")
     public ResponseEntity<?> getById(@PathVariable Long id) {
         Optional<Estudante> estudante;
         try {
@@ -52,7 +58,8 @@ public class EstudanteController {
     }
        
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteEstudante(@PathVariable Long id) {
+    @ApiOperation(value = "Deleta um estudante do banco de dados.")
+    public ResponseEntity<Estudante> deleteEstudante(@PathVariable Long id) {
         try {
             estudanteRepository.delete(estudanteRepository.findById(id).get());
             return ResponseEntity.noContent().build();
@@ -62,6 +69,7 @@ public class EstudanteController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "Edita um estudante contido no banco")
     public ResponseEntity<?> putEstudante(@PathVariable String id, @RequestBody Estudante estudante){
         try {
             return ResponseEntity.ok(estudanteRepository.save(estudante));              

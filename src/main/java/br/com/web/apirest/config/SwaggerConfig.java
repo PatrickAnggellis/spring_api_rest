@@ -1,4 +1,4 @@
-package br.com.web.apirest.swager;
+package br.com.web.apirest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
