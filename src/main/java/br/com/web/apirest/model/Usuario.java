@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.type.TrueFalseType;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,20 +28,26 @@ public class Usuario {
     @Column(unique = true)
     private String username;
 
-    private String password;
+    private String senha;
 
-    public Usuario(String email, String username, String password){
+    @Column
+    private Boolean isEstudante;
+
+    @Column
+    private Boolean isCoordenador;
+    
+    public Usuario(String email, String username, String senha, Boolean boolean1, Boolean boolean2){
         
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.senha = senha;
     }
 
 	public Object getUsername() {
 		return username;
 	}
 
-	public String getPassord() {
-		return password;
+	public String getSenha() {
+		return senha;
 	}
 }

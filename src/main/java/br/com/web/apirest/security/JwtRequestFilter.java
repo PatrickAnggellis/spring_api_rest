@@ -12,11 +12,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.web.apirest.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 
+@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired

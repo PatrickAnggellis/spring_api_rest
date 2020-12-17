@@ -23,7 +23,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         Usuario user = UsuarioRepository.findByUsername(username);
 
         if(user.getUsername().equals(username)){
-            return new User(username, user.getPassord(), new ArrayList<>());
+            return new User(username, user.getSenha(), new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("Não existe usuário com o nome" + username);
         }

@@ -16,8 +16,18 @@ import lombok.ToString;
 public class UsuarioDTO {
     private String email;
     private String username;
-    private String password;
-    
+	private String password;
+	private Boolean isEstudante;
+	private Boolean isCoordenador;
+
+	public Boolean getIsEstudante() {
+		return this.isEstudante;
+	}
+
+	public Boolean getIsCoordenador() {
+		return this.isCoordenador;
+	}
+
     public String getEmail() {
 		return email;
 	}
@@ -29,4 +39,5 @@ public class UsuarioDTO {
 	public String getPassword() {
 		return password;
 	}
+
 }

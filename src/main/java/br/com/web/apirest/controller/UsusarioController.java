@@ -24,7 +24,7 @@ public class UsusarioController {
     @ResponseBody
     public ResponseEntity<Usuario> createUsuario(@RequestBody UsuarioDTO user){
         try {
-            return ResponseEntity.ok(usuarioRepository.save(new Usuario(user.getEmail(), user.getUsername(), user.getPassword())));
+            return ResponseEntity.ok(usuarioRepository.save(new Usuario(user.getEmail(), user.getUsername(), user.getPassword(), user.getIsCoordenador(), user.getIsEstudante())));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
