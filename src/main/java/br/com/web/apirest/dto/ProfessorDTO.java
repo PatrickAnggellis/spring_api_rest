@@ -20,6 +20,20 @@ public class ProfessorDTO {
     private String formacao;
     private String atuacao;
 
+    // public String getNome() {
+    //     return this.nome;
+    // }
 
-    
+    // public Long getMatricula() {
+    //     return this.matricula;
+    // }
+
+    // public String getFormacao() {
+    //     return this.formacao;
+    // }
+
+    // public String getAtuacao() {
+    //     return this.atuacao;
+    // }
+ 
 }

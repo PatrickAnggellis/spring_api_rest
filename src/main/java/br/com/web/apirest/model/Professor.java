@@ -36,11 +36,11 @@ public class Professor {
     @Column(name = "formacao")
     private String formacao;
 
-    @Column(name = "coordenador")
-    private Boolean isCoordenador;
-
     @OneToMany(mappedBy = "nome")
     private Set<Projeto> projeto;
+
+    @Column
+    private boolean coordenador = false;
 
     public Professor(){
 

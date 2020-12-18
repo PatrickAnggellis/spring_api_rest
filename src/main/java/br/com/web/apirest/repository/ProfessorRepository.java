@@ -6,4 +6,5 @@ import br.com.web.apirest.model.Professor;
 
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
     
+
 }

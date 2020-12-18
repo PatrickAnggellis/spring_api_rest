@@ -12,6 +12,6 @@ import br.com.web.apirest.model.Estudante;
 public interface EstudanteRepository extends JpaRepository<Estudante, Long> {
 
     // Método para encontrar uma pessoa por seu nome
-   Optional<List<Estudante>> findByName(String name);
-    
+   Optional<Estudante> findByName(String name);
+
 }
